@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>多视角</title>
+    <script src="./node_modules/three/build/three.js"></script>
+    <style>
+        #canvas1,
+        #canvas2,
+        #canvas3 {
+            position: relative;
+            display: block;
+            border: 1px solid red;
+        }
+        
+        #canvas1 {
+            width: 300px;
+            height: 200px;
+        }
+        
+        #canvas2 {
+            width: 400px;
+            height: 100px;
+            left: 150px;
+        }
+        
+        #canvas3 {
+            width: 200px;
+            height: 300px;
+            left: 75px;
+        }
+    </style>
+    <script>
+        if (WEBGL.isWebGLAvaibable() === false) {
+
+            document.body.appendChild(WEBGL.getWebGLErrorMessage());
+
+        }
+
+        let views = [];
+        init();
+        animate();
+
+        function init() {
+            let canvas1 = document.getElementById('canvas1')
+            let canvas2 = document.getElementById('canvas2')
+            let canvas3 = document.getElementById('canvas3')
+
+            let fullWidth = 550;
+            let fullHeight = 600;
+
+            views.push(new View(canvas1, fullWidth, 0, 0, canvas1.clientWidth, canvas1.clientHeight));
+            views.push(new View(canvas2, fullWidth, 150, 200, canvas2.clientWidth, canvas2.clientHeight));
+            views.push(new View(canvas3, fullWidth, 75, 300, canvas3.clientWidth, canvas3.clientHeight));
+        }
+    </script>
+</head>
+
+<body>
+    <div id="container">
+        <canvans id="canvas1"></canvans>
+        <canvans id="canvas2"></canvans>
+        <canvans id="canvas3"></canvans>
+    </div>
+</body>
+
+</html>
